@@ -1,4 +1,4 @@
-# Copyright 2022 Gentoo Authors
+# Copyright 2022 Gentoo Authors and Weathercold
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -183,7 +183,7 @@ QA_FLAGS_IGNORED="
 	usr/bin/hx
 "
 
-PATCHES=( "${FILESDIR}/helix-22.03-helix-core-lib_rs.patch" )
+PATCHES=( "${FILESDIR}/${PN}-lib_rs.patch" )
 
 src_prepare() {
 	eapply_user
