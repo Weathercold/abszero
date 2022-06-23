@@ -15,29 +15,34 @@ SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="amd64 ~riscv ~x86"
-IUSE="X wayland"
+IUSE="X wayland dbus"
 REQUIRED_USE="?? ( X wayland )"
 
 RDEPEND="
 	>=dev-python/cairocffi-0.9.0[${PYTHON_USEDEP}]
 	>=dev-python/cffi-1.1.0[${PYTHON_USEDEP}]
-	dev-python/dbus-next[${PYTHON_USEDEP}]
 	dev-python/pygobject[${PYTHON_USEDEP}]
 	dev-python/setuptools[${PYTHON_USEDEP}]
 	dev-python/setuptools_scm[${PYTHON_USEDEP}]
 	>=dev-python/six-1.4.1[${PYTHON_USEDEP}]
-	>=dev-python/xcffib-0.10.1[${PYTHON_USEDEP}]
 	media-sound/pulseaudio
 	x11-libs/cairo[X,xcb(+)]
-	x11-libs/libnotify[introspection]
 	x11-libs/pango
+	x11-libs/libnotify[introspection]
+	
+	X? (
+		>=dev-python/xcffib-0.10.1[${PYTHON_USEDEP}]
+		x11-base/xorg-server
+	)
 	
 	wayland? (
 		dev-python/pywayland[${PYTHON_USEDEP}]
 		dev-python/pywlroots[${PYTHON_USEDEP}]
 		dev-python/xkbcommon[${PYTHON_USEDEP}]
 		gui-libs/wlroots
-	)"
+	)
+	
+	dbus? ( dev-python/dbus-next[${PYTHON_USEDEP}] )"
 BDEPEND="
 	test? (
 		media-gfx/imagemagick[X]
